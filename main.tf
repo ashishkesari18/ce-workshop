@@ -1,12 +1,11 @@
 provider "aws" {
-    region  = "us-east-2"
-    profile = "CE"
+  region  = "us-east-2"
+  profile = "CE"
 }
 
-resource "aws_s3_bucket" "devops_central" {
-    bucket = "devops-central-us-east-2"
-    tags = {
-        Name        = "devops-central"
-        Environment = "Dev"
-    }
+module "s3_bucket" {
+  source = "github.com/ashishkesari18/terraform-modules//modules/s3"
+
+  bucket_name = "devops-central-us-east-2-new"
+  environment = "Dev"
 }
